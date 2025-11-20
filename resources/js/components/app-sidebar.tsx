@@ -57,7 +57,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href={`/dashboard?lang=${__('dashboard.lang')}`} prefetch>
+                            <Link href={`/?lang=${__('dashboard.lang')}`} prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>
