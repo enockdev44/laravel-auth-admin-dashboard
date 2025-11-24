@@ -141,3 +141,85 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* calculator.css */
+
+::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+/*
+body {
+    background: #120f1f;
+    display: grid;
+    place-items: center;
+}
+*/
+
+.calculatrice {
+    width: 295px;
+    background: #120f1f;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #221d3b, 3px 3px 5px #000070;
+}
+
+.resultat {
+    height: 60px;
+    width: 100%;
+    background: #120f1f;
+    box-shadow: inset -3px -3px 7px #221d3b, inset 3px 3px 5px #000070;
+}
+
+.resultat input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    padding: 1rem;
+    color: #847f97;
+    font-size: 20px;
+    text-align: right;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    box-shadow: inset -1px -1px 7px #221d3b, inset 1px 1px 5px #000070 ;
+}
+
+.buttons {
+    padding: 20px 0 0 0;
+    text-align: center;
+}
+
+input[type="button"] {
+    width: 50px;
+    height: 50px;
+    margin: 4px;
+    font-size: 12px;
+    background: #120f1f;
+    color: #f1f1f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: -3px -3px 7px #221d3b, inset 3px 3px 5px #000070;
+}
+
+input[type="button"]:active {
+    box-shadow: inset -3px -3px 7px #221d3b, inset 3px 3px 5px #000070;
+}
+
+.reset {
+    /* width: 100% !important; */
+    font-size: 18px;
+}
+
+.infos {
+    color: #eb9595;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 9px;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}

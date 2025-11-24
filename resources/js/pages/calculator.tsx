@@ -30,16 +30,55 @@ import Heading from "@/components/heading";
 import Paragraph from "@/components/paragraph";
 import HeadingSmall from "@/components/heading-small";
 
-export default function Welcome({
+export default function Calculator({
     canRegister = true,
 }: {
     canRegister?: boolean;
 }) {
     const { auth } = usePage<SharedData>().props;
+
 	const { __ } = useLang();
+	
+	var fenetre = ""
+    
+    const val = function (v) {
+        fenetre = fenetre + v
+        document.getElementById('fenetre').value = fenetre
+        console.log(fenetre)
+    }
+    
+    const calculate = function () {
+        let err = ''
+        if(fenetre=='' || fenetre=='+' || fenetre=='-' || fenetre=='*' || fenetre=='/' || fenetre=='.') {
+            err = 'Sorry, Input number required'
+            console.log(err)
+            document.getElementsByClassName('infos')[0].textContent = err
+            return
+        }
+        const result = eval(fenetre)
+        document.getElementsByClassName('infos')[0].textContent = ""
+        document.getElementById('fenetre').value = result
+        console.log(result)
+    }
+    
+    const suppr = function () {
+        fenetre = ""
+        document.getElementById('fenetre').value = "0"
+        document.getElementsByClassName('infos')[0].textContent = ""
+        console.log('full reset')
+    }
+
+    const back = function () {
+        let tab = fenetre.split('')
+        tab.pop()
+        fenetre = tab.join('')
+        document.getElementsByClassName('infos')[0].textContent = ""
+        document.getElementById('fenetre').value = fenetre
+    }
+    
     return (
         <>
-            <Head title={__('welcome.welcome')}>
+            <Head title='Calculator'>
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
                     href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
@@ -99,69 +138,51 @@ export default function Welcome({
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                     <main className="flex-col items-center rounded-xl border-[#0a0a0a] lg:justify-center dark:border-[#646464] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                         <div className="flex w-full flex-col gap-4">
-                            <Item variant="outline" className="px-[40px] pt-[40px] pb-[80px]">
-                                <ItemContent className="flex items-start justify-start">
-                                    <ItemTitle className="text-[#0a0a0a] dark:text-[#646464] lg:text-5xl md:text-xl sm:text-xl pb-3">{__('welcome.hello')}</ItemTitle>
-                                    <div className="text-[#0a0a0a] dark:text-[#646464] flex-col items-start">
-                                        <p className="text-[#0a0a0a] dark:text-[#646464] lg:text-4xl md:text-3xl pb-3">{__('welcome.whoami')}</p>
-                                        <Paragraph content={__('welcome.myjobis')} />
-                                        <div className="lg:flex hidden text-[#0a0a0a] dark:text-[#646464] gap-3">
-                                            <Button variant="outline" size="sm">{__('welcome.buttonProjects')}</Button>
-                                            <Button variant="outline" size="sm">{__('welcome.buttonCV')}</Button>
-                                            <Button variant="outline" size="sm">{__('welcome.buttonContact')}</Button>
+                            <div className="calculatrice">
+                                <p className="infos"></p>
+                                <form name="form">
+                                    <div className="resultat">
+                                        <input type="text" id="fenetre" value={fenetre} name="fenetre" />
+                                    </div>
+                                    <div className="buttons">
+                                        <div className="row">
+                                            <input type="button" value="7" name="v7" onClick={() => val(7)} />
+                                            <input type="button" value="8" name="v8" onClick={() => val(8)} />
+                                            <input type="button" value="9" name="v9" onClick={() => val(9)} />
+                                            <input type="button" value="+" name="plus" onClick={() => val("+")} />
+                                        </div>
+                                        <div className="row">
+                                            <input type="button" value="4" name="v4" onClick={() => val(4)} />
+                                            <input type="button" value="5" name="v5" onClick={() => val(5)} />
+                                            <input type="button" value="6" name="v6" onClick={() => val(6)} />
+                                            <input type="button" value="-" name="minus" onClick={() => val("-")} />
+                                        </div>
+                                        <div className="row">
+                                            <input type="button" value="1" name="v1" onClick={() => val(1)} />
+                                            <input type="button" value="2" name="v2" onClick={() => val(2)} />
+                                            <input type="button" value="3" name="v3" onClick={() => val(3)} />
+                                            <input type="button" value="*" name="multiply" onClick={() => val('*')} />
+                                        </div>
+                                        <div className="row">
+                                            <input type="button" value="0" name="v0" onClick={() => val(0)} />
+                                            <input type="button" value="." name="dot" onClick={() => val('.')} />
+                                            <input type="button" value="/" name="divide" onClick={() => val('/')} />
+                                            <input type="button" value="=" name="egale" onClick={() => calculate()} />
+                                        </div>
+                                        <div className="row">
+                                            <input type="button" className="reset" value="<-" name="back" onClick={() => back()} />
+                                            <input type="button" className="reset" value="AC" name="reset" onClick={() => suppr()} />
+                                            <input type="button" value="00" name="v00" onClick={() => val('00')} />
+                                            <input type="button" value="000" name="v000" onClick={() => val('000')} />
                                         </div>
                                     </div>
-                                </ItemContent>
-                                <ItemDescription>
-                                    <div className="w-full">
-                                        <Avatar className="size-auto">
-                                            <AvatarImage src="/profile.jpg" />
-                                            <AvatarFallback>ER</AvatarFallback>
-                                        </Avatar>
-                                    </div>
-                                </ItemDescription>
-                            </Item>
+                                </form>
+                            </div>
+                            
                         </div>
                     </main>
                 </div>
                 <div className="hidden h-14.5 lg:block"></div>
-
-                <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
-                    <main className="flex-col items-center rounded-xl border-[#0a0a0a] lg:justify-center dark:border-[#646464] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-                        <div className="lg:flex block gap-6">
-                          <div className="my-6">
-                            <Card>
-                                <CardContent className="flex-col items-center justify-center px-6 my-3">
-                                    <Heading title={__('welcome.titleAbout')} />
-                                    <Paragraph content={__('welcome.descriptionAbout')} />
-                                </CardContent>
-                            </Card>
-                           </div>
-                           <div className="my-6">
-                            <Card>
-                                <CardContent className="flex-col items-center justify-center min-w-[335px] px-6 my-2">
-                                    <HeadingSmall title="LANGAGES" className="mb-2" />
-                                     <div className="flex gap-1 text-[#0a0a0a] dark:text-[#646464] space-y-4">
-                                        <Button variant="outline" size="sm">{__('welcome.textButtonEN')}</Button>
-                                        <Button variant="outline" size="sm">{__('welcome.textButtonFR')}</Button>
-                                        <Button variant="outline" size="sm">{__('welcome.textButtonMG')}</Button>
-                                    </div>
-                                   <HeadingSmall title="PROGRAMING LANGAGES" className="mb-2" />
-                                     <div className="flex gap-1 text-[#0a0a0a] flex-wrap dark:text-[#646464] space-y-4">
-                                        <Button variant="outline" size="sm">HTML/CSS/JS</Button>
-                                        <Button variant="outline" size="sm">PHP</Button>
-                                        <Button variant="outline" size="sm">C/C++/C#</Button>
-                                        <Button variant="outline" size="sm">JSON</Button>
-                                        <Button variant="outline" size="sm">XML</Button>
-                                        <Button variant="outline" size="sm">JAVA/Kotlin</Button>
-                                        <Button variant="outline" size="sm">SQL</Button>
-                                    </div> 
-                                </CardContent>
-                            </Card>
-                          </div>
-                        </div>
-                    </main>
-                </div>
 
             </div>
         </>

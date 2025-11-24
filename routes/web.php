@@ -6,9 +6,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostIndexController;
 use App\Http\Controllers\PostCreateController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\CalculatorController;
 
 Route::get('/', WelcomeController::class)->name('home');
+Route::get('/calculator', CalculatorController::class)->name('calculator');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('dashboard', DashboardController::class)->name('dashboard');
