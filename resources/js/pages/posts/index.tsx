@@ -19,12 +19,19 @@ const breadcrumbs: BreadcrumbItem[] = [
   },
 ];
 
-export default function PostIndex({ posts }:any) {
+interface Post {
+    title:string;
+    content: string;
+    image: string;
+}
+
+export default function PostIndex({ posts }:Post) {
   const { __ } = useLang();
   breadcrumbs[0].title = __('posts.posts')
   breadcrumbs[0].href = "/" + __('posts.lang') + "/posts"
   const title = __('posts.title')
   const content = __('posts.content')
+  const image = __('posts.image')
   return (
     <AppLayout breadcrumbs={breadcrumbs}>
       <Head title={__('posts.posts')} />
@@ -40,13 +47,15 @@ export default function PostIndex({ posts }:any) {
               <TableRow>
                 <TableHead className="w-[100px]">{title}</TableHead>
                 <TableHead>{content}</TableHead>
+                <TableHead>{image}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {posts.map((post: any) => (
+              {posts.map((post: Post) => (
                 <TableRow key={post.id}>
                   <TableCell className="font-medium">{post.title}</TableCell>
                   <TableCell>{post.content}</TableCell>
+                  <TableCell><img width='50' src={`/storage/${post.image}`}/></TableCell>
                 </TableRow>
               ))}
             </TableBody>
