@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Models\Post;
 use Illuminate\Support\Facades\App;
 
-class PostCreateController extends Controller
+class PostEditController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, Post $post)
     {
         $locale = isset($request->lang) ? $request->lang : 'en';
         if (! in_array($locale, ['en', 'fr'])) {
@@ -23,8 +23,9 @@ class PostCreateController extends Controller
         // Load the dashboard.php from resources/lang/ 'fr' or 'en' language file
         syncLangFiles('dashboard');
         syncLangFiles('posts');
-        syncLangFiles('validation');
         
-        return inertia::render('posts/create');
+        return inertia::render('posts/edit', [
+           'currentPost' => $post
+        ]);
     }
 }
