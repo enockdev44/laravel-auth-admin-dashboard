@@ -28,7 +28,7 @@ class PostIndexController extends Controller
 	    syncLangFiles('settings');
 	    
         $posts = Post::all();
-	    $posts = Post::with('user')->orderBy('created_at', 'DESC')->get();
+	    $posts = Post::with('user')->orderBy('created_at', 'ASC')->get();
 	    
         return inertia::render('posts/index', [
 	        'posts' => $posts,

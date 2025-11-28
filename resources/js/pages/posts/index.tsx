@@ -46,7 +46,8 @@ export default function PostIndex({ posts }:Post) {
             <TableCaption>{__('posts.description')}</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">{title}</TableHead>
+                <TableHead className="w-[100px]">ID</TableHead>
+                <TableHead>{title}</TableHead>
                 <TableHead>{content}</TableHead>
                 <TableHead>{author}</TableHead>
                 <TableHead>Action</TableHead>
@@ -55,7 +56,8 @@ export default function PostIndex({ posts }:Post) {
             <TableBody>
               {posts.map((post: Post) => (
                 <TableRow key={post.id}>
-                  <TableCell className="font-medium">{post.title}</TableCell>
+                  <TableCell className="font-medium">{post.id}</TableCell>
+                  <TableCell>{post.title}</TableCell>
                   <TableCell>{post.content}</TableCell>
                   <TableCell>{post.user.name}</TableCell>
                   <TableCell><img width='50' src={`/storage/${post.image}`}/></TableCell>
