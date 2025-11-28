@@ -32,6 +32,7 @@ export default function PostIndex({ posts }:Post) {
   const title = __('posts.title')
   const content = __('posts.content')
   const image = __('posts.image')
+  const author = __('posts.author')
   return (
     <AppLayout breadcrumbs={breadcrumbs}>
       <Head title={__('posts.posts')} />
@@ -47,6 +48,7 @@ export default function PostIndex({ posts }:Post) {
               <TableRow>
                 <TableHead className="w-[100px]">{title}</TableHead>
                 <TableHead>{content}</TableHead>
+                <TableHead>{author}</TableHead>
                 <TableHead>Action</TableHead>
               </TableRow>
             </TableHeader>
@@ -55,6 +57,7 @@ export default function PostIndex({ posts }:Post) {
                 <TableRow key={post.id}>
                   <TableCell className="font-medium">{post.title}</TableCell>
                   <TableCell>{post.content}</TableCell>
+                  <TableCell>{post.user.name}</TableCell>
                   <TableCell><img width='50' src={`/storage/${post.image}`}/></TableCell>
                   <TableCell>
                     <Link href={route('posts.edit', post.id)} className="text-indigo-500 hover:text-indigo-600">Edit/delete</Link>

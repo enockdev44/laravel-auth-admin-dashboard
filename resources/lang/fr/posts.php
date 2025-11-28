@@ -4,6 +4,8 @@ return [
     'title' => 'Titre',
     'content' => 'Contenus',
     'image' => 'Photo',
+    'author' => 'Auteur',
+    
     'placeholderTitle' => 'Tapez le titre de la publication',
     'placeholderContent' => 'Tapez son contenu',
     'placeholderImage' => 'Choisis un fichier image',

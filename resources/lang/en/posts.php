@@ -4,6 +4,7 @@ return [
     'title' => 'Title',
     'content' => 'Content',
     'image' => 'Thumbnail',
+    'author' => 'Author',
     
     'placeholderTitle' => 'Enter post title',
     'placeholderContent' => 'Enter post content',
