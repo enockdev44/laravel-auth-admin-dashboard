@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Http\Resources\PostResource;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\App;
 
 class PostIndexController extends Controller
@@ -26,11 +27,11 @@ class PostIndexController extends Controller
 	    syncLangFiles('posts');
 	    syncLangFiles('settings');
 	    
-	    $posts = $request->user()->posts()->get();
-        
-        
+        $posts = Post::all();
+	    $posts = Post::with('user')->orderBy('created_at', 'ASC')->get();
+
         return inertia::render('posts/index', [
-	        'posts' => PostResource::collection($posts),
+	        'posts' => $posts,
         ]);
     }
 }

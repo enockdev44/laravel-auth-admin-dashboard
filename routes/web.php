@@ -11,6 +11,7 @@ use App\Http\Controllers\PostUpdateController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', WelcomeController::class)->name('home');
 Route::get('/calculator', CalculatorController::class)->name('calculator');
@@ -24,5 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::get('posts/{post}/edit', PostEditController::class)->name('posts.edit');
 		Route::put('posts/{post}', PostUpdateController::class)->name('posts.update');
 });
+
+Route::resource('products', ProductController::class);
 
 require __DIR__.'/settings.php';

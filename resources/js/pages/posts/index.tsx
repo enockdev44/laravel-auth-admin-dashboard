@@ -49,7 +49,6 @@ export default function PostIndex({ posts }:Post) {
                 <TableHead className="w-[100px]">ID</TableHead>
                 <TableHead>{title}</TableHead>
                 <TableHead>{content}</TableHead>
-                <TableHead>{author}</TableHead>
                 <TableHead>Action</TableHead>
               </TableRow>
             </TableHeader>
@@ -59,7 +58,6 @@ export default function PostIndex({ posts }:Post) {
                   <TableCell className="font-medium">{post.id}</TableCell>
                   <TableCell>{post.title}</TableCell>
                   <TableCell>{post.content}</TableCell>
-                  <TableCell>{post.user.name}</TableCell>
                   <TableCell><img width='50' src={`/storage/${post.image}`}/></TableCell>
                   <TableCell>
                     <Link href={route('posts.edit', post.id)} className="text-indigo-500 hover:text-indigo-600">Edit/delete</Link>
