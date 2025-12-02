@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from "@/components/ui/textarea"
 import { Spinner } from '@/components/ui/spinner';
 import { useLang } from '@/hooks/useLang';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -42,11 +42,14 @@ export default function PostCreate() {
         content: '',
         image: null
     });
-
+    
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if(file) {
             setData('image', file);
+            setImagePreview(URL.createObjectURL(file))
         }
     }
 
@@ -110,6 +113,7 @@ export default function PostCreate() {
                             type="file"
                             onChange={handleFileChange}
                         />
+                        {imagePreview && <img className="w-10 h-10 rounded-full object-cover" alt={title} src={imagePreview} />}
                         <InputError message={errors.image} />
                     </div>
                     <div className="grid gap-2">
