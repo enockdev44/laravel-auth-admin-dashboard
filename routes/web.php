@@ -8,6 +8,7 @@ use App\Http\Controllers\PostCreateController;
 use App\Http\Controllers\PostStoreController;
 use App\Http\Controllers\PostEditController;
 use App\Http\Controllers\PostUpdateController;
+use App\Http\Controllers\PostDestroyController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\ChartController;
@@ -24,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('posts', PostStoreController::class)->name('posts.store');
 		Route::get('posts/{post}/edit', PostEditController::class)->name('posts.edit');
 		Route::put('posts/{post}', PostUpdateController::class)->name('posts.update');
+		Route::delete('posts/{post}', PostDestroyController::class)->name('posts.destroy');
 });
 
 Route::resource('products', ProductController::class);

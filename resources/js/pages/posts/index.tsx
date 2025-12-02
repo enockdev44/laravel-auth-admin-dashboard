@@ -58,9 +58,12 @@ export default function PostIndex({ posts }:Post) {
                   <TableCell className="font-medium">{post.id}</TableCell>
                   <TableCell>{post.title}</TableCell>
                   <TableCell>{post.content}</TableCell>
-                  <TableCell><img width='50' src={`/storage/${post.image}`}/></TableCell>
+                  <TableCell><img width='50' src={post.image}/></TableCell>
                   <TableCell>
-                    <Link href={route('posts.edit', post.id)} className="text-indigo-500 hover:text-indigo-600">Edit/delete</Link>
+                    <div className="flex gap-2">
+                        <Link href={route('posts.edit', post.id)} className="border px-2 border-indigo-500 text-indigo-500 hover:text-white hover:bg-indigo-600">Edit</Link>
+                        <Link href={route('posts.destroy', post.id)} method="DELETE" className="border border-red-500 px-2 text-red-500 hover:text-white hover:bg-red-600">Delete</Link>
+                    </div>
                 </TableCell>
                 </TableRow>
               ))}
