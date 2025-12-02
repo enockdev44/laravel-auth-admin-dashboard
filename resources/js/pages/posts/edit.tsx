@@ -21,8 +21,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function PostEdit({ currentPost }: { currentPost: Post }) {
     const [ title, setTitle ] = useState<string>(currentPost.title);
     const [ content, setContent ] = useState<string>(currentPost.content);
-    const [ image, setImage ] = useState<File | null>(null);
-    const [ imagePreview, setImagePreview ] = useState<string | null>(currentPost.image);
+    const [ image, setImage ] = useState<File | null>(currentPost.image);
+    const [ imagePreview, setImagePreview ] = useState<string | null>(null);
     const { errors } = usePage().props;
     const { __ } = useLang();
     breadcrumbs[0].title = "Post Update"
@@ -31,7 +31,6 @@ export default function PostEdit({ currentPost }: { currentPost: Post }) {
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = await e.target.files?.[0];
         if(file) {
-            console.log(file)
             setImage(file);
             setImagePreview(URL.createObjectURL(file));
         }
@@ -79,7 +78,10 @@ export default function PostEdit({ currentPost }: { currentPost: Post }) {
                             type="file"
                             onChange={handleFileChange}
                         />
-                        {imagePreview && <img className="w-10 h-10 rounded-full object-cover" alt={title} src={`/storage/${imagePreview}`} />}
+                        <div className='flex gap-2'>
+                            <img className={"w-10 h-10 border border-red-500 rounded-full object-cover" + (imagePreview ? " opacity-30":"")} alt={currentPost.title} src={currentPost.image} />
+                            {imagePreview && <img className="w-10 h-10 border border-green-500 rounded-full object-cover" alt={currentPost.title} src={imagePreview} />}
+                        </div>
                         <InputError message={errors.image} />
                     </div>
                     <div className="grid gap-2">

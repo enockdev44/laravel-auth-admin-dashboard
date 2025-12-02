@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\App;
+use App\Http\Resources\PostResource;
 
 class PostEditController extends Controller
 {
@@ -25,7 +26,7 @@ class PostEditController extends Controller
         syncLangFiles('posts');
         
         return inertia::render('posts/edit', [
-           'currentPost' => $post
+           'currentPost' => new PostResource($post),
         ]);
     }
 }
