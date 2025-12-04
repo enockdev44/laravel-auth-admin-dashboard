@@ -24,11 +24,11 @@ class PostIndexController extends Controller
 	    // Load the posts.php from resources/lang/ 'en' or 'fr' language file
 	    syncLangFiles('dashboard');
 	    syncLangFiles('posts');
+	    syncLangFiles('products');
 	    syncLangFiles('settings');
 	    
 	    $posts = $request->user()->posts()->get();
-        
-        
+
         return inertia::render('posts/index', [
 	        'posts' => PostResource::collection($posts),
         ]);

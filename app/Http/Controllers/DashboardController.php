@@ -24,6 +24,7 @@ class DashboardController extends Controller
 	    // Load the dashboard.php from resources/lang/ 'fr' or 'en' language file
         syncLangFiles('dashboard');
         syncLangFiles('posts');
+        syncLangFiles('products');
         syncLangFiles('settings');
 
         /* end langages configurations */

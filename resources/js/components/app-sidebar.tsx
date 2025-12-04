@@ -26,8 +26,13 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Posts',
-        href: '/en/posts',
+        href: '/posts',
         icon: BookOpen,
+    },
+    {
+        title: 'Products',
+        href: '/products',
+        icon: LayoutGrid,
     }
 ];
 
@@ -51,6 +56,9 @@ export function AppSidebar() {
 	mainNavItems[0].href = "/dashboard?lang=" + __('dashboard.lang')
 	mainNavItems[1].title = __('posts.posts')
 	mainNavItems[1].href = "/posts?lang=" + __('posts.lang')
+	mainNavItems[2].title = __('products.products')
+	mainNavItems[2].href = "/products?lang=" + __('products.lang')
+	
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>

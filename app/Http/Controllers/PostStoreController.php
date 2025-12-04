@@ -12,7 +12,7 @@ class PostStoreController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data = $request->validate([ // Fixed typo: $equest -> $request
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Added validation constraints
